@@ -7,12 +7,12 @@ Example Output
 
 <img width="1022" height="689" alt="image" src="https://github.com/user-attachments/assets/a811c0fd-e87a-4596-927d-273521e29d80" />
 
-Features 
+# Features 
 
-*Add as many meals as you want
-*Calculates total and average calories
-*warns if you exceed your daily limit
-*Shows a simple daily summary
+Add as many meals as you want
+Calculates total and average calories
+warns if you exceed your daily limit
+Shows a simple daily summary
 ------------------------------------------------
 
 # CODE
