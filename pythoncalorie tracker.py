@@ -1,84 +1,57 @@
-import json
-from datetime import datetime
-import os
+# ---------------------------------------------
+# Daily Calorie Tracker
+# Written by Ashish Raj
+# A simple program to track meals and calories
+# ---------------------------------------------
 
-DATA_FILE = "calorie_data.json"
+# Task 1: Welcome Message
+print("Welcome to Daily Calorie Tracker!")
+print("Track what you eat, count your calories, and see if you’re staying within your daily goal!")
 
-def load_data():
-    """Loads calorie data from a JSON file."""
-    if os.path.exists(DATA_FILE):
-        with open(DATA_FILE, 'r') as f:
-            return json.load(f)
-    return {}
+# Task 2: Input & Data Collection
+meals = []
+calories = []
+num_meals = int(input("How many times you had taken meals for today starting from morning to night  ? "))
+for i in range(num_meals):
+    print(f"\n Enter details for meal that you had taken {i + 1}:")
+    meal_name = str(input("Meal name: "))
+    calorie_amount = float(input("Calories (in kcal): "))
+    meals.append(meal_name)
+    calories.append(calorie_amount)
+# Task 3: Calorie Calculation
+total_calories = sum(calories)
+average_calories = total_calories / len(calories)
+daily_limit = float(input("\nEnter your daily calorie limit: "))
+ # Task 4: Exceed Limit Warning System
+if total_calories > daily_limit:
+    status_message = " You have exceeded your daily calorie limit Today : "
+else:
+    status_message = " You are within your daily calorie limit today  :"
 
-def save_data(data):
-    """Saves calorie data to a JSON file."""
-    with open(DATA_FILE, 'w') as f:
-        json.dump(data, f, indent=4)
+# Task 5: Summary Output
+# -------------------------------
+print("\n----------- DAILY SUMMARY REPORT -----------\n")
+print("Meal Name            Calories")
+print("--------------------------------------------")
 
-def get_today_str():
-    """Returns today's date as a string (YYYY-MM-DD)."""
-    return datetime.now().strftime("%Y-%m-%d")
+for i in range(len(meals)):
+    print(f"{meals[i]}              {calories[i]}")
 
-def add_food_entry(data):
-    """Prompts the user for food details and adds it to the data."""
-    food_name = input("Enter food name: ")
-    try:
-        calories = int(input("Enter calories: "))
-    except ValueError:
-        print("Invalid input. Please enter a valid number for calories.")
-        return
+print("--------------------------------------------")
+print(f"Total:               {total_calories}")
+print(f"Average:             {average_calories}")
+print(f"Status:              {status_message}")
+print("--------------------------------------------")
 
-    today = get_today_str()
-    if today not in data:
-        data[today] = []
 
-    data[today].append({"name": food_name, "calories": calories})
-    save_data(data)
-    print(f"Added {calories} calories for {food_name}.")
 
-def view_summary(data):
-    """Displays today's total calorie intake."""
-    today = get_today_str()
-    if today in data and data[today]:
-        total_calories = sum(item['calories'] for item in data[today])
-        print(f"\n=== 📅 TODAY'S SUMMARY ({today}) ===")
-        for item in data[today]:
-            print(f"- {item['name']}: {item['calories']} calories")
-        print(f"Total calories: {total_calories}")
-        print("====================================")
-    else:
-        print("No entries for today yet!")
 
-def main():
-    """Main function to run the calorie tracker CLI application."""
-    data = load_data()
-    print("👋 Welcome to the Python Calorie Tracker!")
-
-    while True:
-        print("\nChoose an option:")
-        print("1. Add a food entry")
-        print("2. View today's summary")
-        print("3. Quit")
-        choice = input("Enter your choice (1/2/3): ")
-
-        if choice == "1":
-            add_food_entry(data)
-        elif choice == "2":
-            view_summary(data)
-        elif choice == "3":
-            print("👋 Stay healthy! Goodbye!")
-            break
-        else:
-            print("Invalid choice. Please enter 1, 2, or 3.")
-
-if __name__ == "__main__":
-    main()
 
 
 
 
     
+
 
 
 
