@@ -10,10 +10,10 @@ Example Output
 # Features 
 
 
-Add as many meals as you want
-Calculates total and average calories
-Warns if you exceed your daily limit
-Shows a simple daily summary
+1.Add as many meals as you want
+2.Calculates total and average calories
+3.Warns if you exceed your daily limit
+4.Shows a simple daily summary
 ------------------------------------------------
 
 # CODE
